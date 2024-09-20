@@ -1,6 +1,10 @@
 # Netflix-GPT
     - create react app
     - configure tailwind
+    - header
+    - routing
+    - sign up form
+    - login form
 
 # Features
     - Login/Sign Up
