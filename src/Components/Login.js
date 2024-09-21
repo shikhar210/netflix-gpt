@@ -2,11 +2,14 @@ import React, { useRef, useState } from 'react'
 import Header from './Header'
 import { LOGIN_BG } from '../Utils/Constants'
 import { validateData } from '../Utils/Validate';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth } from '../Utils/firebase';
 
 const Login = () => {
     const [isSignInForm, setIsSignInForm] = useState(true);
     const [errorMsg, setErrorMsg] = useState(null);
-
+    
+    const fullName = useRef(null);
     const email = useRef(null);
     const password = useRef(null);
 
@@ -17,6 +20,31 @@ const Login = () => {
     const handleButtonClick = () => {
         const error = validateData(email.current.value, password.current.value);
         setErrorMsg(error);
+        if(error) return;
+        if(!isSignInForm){
+            createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+                .then((userCredentials)=>{
+                    const user = userCredentials.user;
+                    updateProfile(user, {
+                        displayName: fullName.current.value
+                    })
+                    .then(()=> {})
+                    .catch((error) => {
+                        setErrorMsg(error.message);
+                    });
+                })
+                .catch((error)=> {
+                    setErrorMsg(error.code + "-" + error.message);
+                })
+        } else {
+            signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+                .then((userCredentials)=> {
+                    const user = userCredentials.user;
+                })
+                .catch((error)=> {
+                    setErrorMsg(error.code + "-" + error.message);
+                })
+        }
     }
   return (
     <div>
@@ -34,6 +62,7 @@ const Login = () => {
             {
             !isSignInForm &&
                 <input
+                    ref={fullName}
                     type='text'
                     placeholder='Full Name'
                     className='p-4 my-4 w-full bg-gray-600 font-normal'
