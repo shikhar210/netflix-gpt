@@ -4,7 +4,7 @@ import appStore from "./Redux/appStore";
 
 function App() {
   return (
-    <div className="text-3xl font-bold underline">
+    <div>
       <Provider store={appStore}>
         <Body/>
       </Provider>

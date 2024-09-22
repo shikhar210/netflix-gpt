@@ -22,6 +22,9 @@ url: https://netflixgpt-8655d.web.app/
     - Create redux store with userSlice
     - Implement Sign Out
     - Update Profile
+    - Unsubscribed from onAuthStateChanged callback
+    - register in tmdb and get access token for new app
+    - get data from tmdb api
 
 
 # Features
