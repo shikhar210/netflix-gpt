@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addUser, removeUser } from '../Redux/userSlice'
 import { toggleShowGptSearch } from '../Redux/gptSlice'
 import { changeLanguage } from '../Redux/configSlice'
+import { addSearchedMovies, addSearchedText } from '../Redux/moviesSlice'
 
 const Header = () => {
   const navigate = useNavigate();
@@ -43,6 +44,11 @@ const Header = () => {
   const handleLanguageChange = (e) =>{
     dispatch(changeLanguage(e.target.value))
   }
+  const handleGptSearch = () => {
+    dispatch(toggleShowGptSearch())
+    dispatch(addSearchedText(""))
+    dispatch(addSearchedMovies(null))
+  }
   return (
     <div className='absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between'>
         <img className='w-44' src={LOGO} alt ="logo"/>
@@ -55,7 +61,7 @@ const Header = () => {
             }
           </select>)}
           <button
-            onClick={()=>dispatch(toggleShowGptSearch())}
+            onClick={handleGptSearch}
             className='text-sm pb-3 px-4 text-white'
           >{showGptSearch ? "Home":"GPT Search 🔎"}</button>
           <img className='w-12 h-12' src= {USER_ICON} alt="user icon"/>

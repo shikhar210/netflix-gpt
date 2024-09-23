@@ -13,7 +13,7 @@ export const USER_ICON =
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMmUzZThmNjM3NWVjZDAzZTZjOTY2OWQzMzhiMjQyMyIsIm5iZiI6MTcyNjkxMDkyNi41MTA2NjUsInN1YiI6IjY2ZWU5MDE2MGVhODBkMWZlMzhkMTVmZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ewWiSdSYPxXDzE1dhiMcjT3JZms6RlsSAczV3F2ypZ0'
+      Authorization: "Bearer " + process.env.REACT_APP_TMDB_KEY
     }
   };
 
@@ -24,3 +24,5 @@ export const USER_ICON =
     { identifier: "hindi", name: "Hindi" },
     { identifier: "spanish", name: "Spanish" }
   ];
+
+  export const OPENAI_KEY = process.env.REACT_APP_OPENAI_KEY
