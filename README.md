@@ -25,6 +25,11 @@ url: https://netflixgpt-8655d.web.app/
     - Unsubscribed from onAuthStateChanged callback
     - register in tmdb and get access token for new app
     - get data from tmdb api
+    - Browse page
+        - main container
+            - video backgroung and video titles
+        - secondary container
+            - movie lists and movie cards
 
 
 # Features

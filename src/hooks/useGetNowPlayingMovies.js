@@ -5,17 +5,15 @@ import { options } from "../Utils/Constants";
 
 const useGetNowPlayingMovies = () => {
     const dispatch = useDispatch();
-    const nowPlayingMovies = useSelector(
-      (store) => store.movies.nowPlayingMovies
-    );
-    const getNowPlayingMovies = async () => {
-        const response  = await fetch("https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1", options);
-        const data = await response.json();
-        dispatch(addNowPlayingMovies(data.results));
-    }
+    const nowPlayingMovies = useSelector((store) => store.movies?.nowPlayingMovies);
     useEffect(() => {
+        const getNowPlayingMovies = async () => {
+            const response  = await fetch('https://api.themoviedb.org/3/movie/now_playing?page=1', options);
+            const data = await response.json();
+            data.results && dispatch(addNowPlayingMovies(data.results));
+        }
         !nowPlayingMovies && getNowPlayingMovies();
-    }, []);
+    }, [nowPlayingMovies, dispatch]);
 }
 
 export default useGetNowPlayingMovies;
