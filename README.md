@@ -30,7 +30,9 @@ url: https://netflixgpt-8655d.web.app/
             - video backgroung and video titles
         - secondary container
             - movie lists and movie cards
-
+    - GPT Search Page
+    - GPT Search Bar
+    - Multi-language feature in our app
 
 # Features
     - Login/Sign Up
